@@ -2,9 +2,10 @@ version: '3.1'
 
 services:
 
-  db:
+  database:
     image: postgres
     environment:
+      - POSTGRES_DB=nest_api
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
     ports:
