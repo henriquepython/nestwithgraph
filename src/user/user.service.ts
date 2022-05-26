@@ -36,7 +36,9 @@ export class UserService {
     const userSaved = await this.userRepoitory.save(user);
 
     if (!userSaved) {
-      throw new InternalServerErrorException('Problema para criar usuário.');
+      throw new InternalServerErrorException(
+        'Problem to create a user. Try again',
+      );
     }
 
     return userSaved;
@@ -46,7 +48,7 @@ export class UserService {
     const user = await this.userRepoitory.findOne(id);
 
     if (!user) {
-      throw new NotFoundException('Usuário não encontrado');
+      throw new NotFoundException('Problem to updated a user. Try again');
     }
 
     await this.userRepoitory.update(user, { ...data });
