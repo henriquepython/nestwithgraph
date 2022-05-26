@@ -61,14 +61,14 @@ describe('UserService', () => {
     it('Should find a existing user', async () => {
       const user = TestUtil.giveMeAvalidUser();
       mockRepository.findOne.mockReturnValue(user);
-      const userFound = await service.findUserById('1');
+      const userFound = await service.getUserById('1');
       expect(userFound).toEqual(user);
       expect(mockRepository.findOne).toHaveBeenCalledTimes(1);
       expect(mockRepository.findOne).toHaveBeenCalledWith('1');
     });
     it('Should return a exception when does not to find a user', () => {
       mockRepository.findOne.mockResolvedValue(null);
-      expect(service.findUserById('1')).rejects.toBeInstanceOf(
+      expect(service.getUserById('1')).rejects.toBeInstanceOf(
         NotFoundException,
       );
       expect(mockRepository.findOne).toHaveBeenCalledTimes(1);
