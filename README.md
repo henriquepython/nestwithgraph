@@ -44,7 +44,7 @@ password: 123456
 ## 1 passo
 ### clonar repositório
 ```bash
-git clone https://github.com/henriquepython/nestwithgraph.git
+git clone https://github.com/henriquepython/nestwithgraphQL.git
 ```
 
 ```bash
