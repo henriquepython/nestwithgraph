@@ -9,7 +9,7 @@ import { UserService } from './user.service';
 @Resolver()
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
-
+  @UseGuards(GqlAuthGuard)
   @Query(() => [User])
   async users(): Promise<User[]> {
     const users = await this.userService.findAllUsers();
@@ -28,7 +28,7 @@ export class UserResolver {
     const users = await this.userService.getUserByEmail(email);
     return users;
   }
-
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => User)
   async createUser(@Args('data') data: CreateUserDto): Promise<User> {
     const user = await this.userService.createUser(data);
