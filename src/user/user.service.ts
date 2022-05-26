@@ -21,7 +21,15 @@ export class UserService {
     return users;
   }
 
-  async findUserById(id: string): Promise<User> {
+  async getUserByEmail(email: string): Promise<User> {
+    const user = await this.userRepoitory.findOne({ where: { email } });
+    if (!user) {
+      throw new NotFoundException('Usuário não encontrado');
+    }
+
+    return user;
+  }
+  async getUserById(id: string): Promise<User> {
     const user = await this.userRepoitory.findOne(id);
 
     if (!user) {
@@ -57,7 +65,7 @@ export class UserService {
   }
 
   async deleteUser(id: string): Promise<boolean> {
-    const user = await this.findUserById(id);
+    const user = await this.getUserById(id);
 
     const deleted = await this.userRepoitory.delete(user);
 
